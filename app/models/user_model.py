@@ -5,7 +5,7 @@ from app.schemas import UserInDB
 from app.db.base_class import Base
 
 class UserModel(Base):
-    __tablename__ = "users"
+    __tablename__ = "Users"
 
     # setting index to true makes id, username, and email easier to search amongst large data
     id = Column(Integer, primary_key=True, index=True)
@@ -28,10 +28,4 @@ class UserModel(Base):
             # don't think I need the is_superuser code below
             # is_superuser=self.is_superuser
         )
-class MessageModel(Base):
-    __tablename__ = 'messages'
-    id = Column(Integer, primary_key=True, index=True)
-    sender_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-    receiver_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-    message_content = Column(String, nullable=False)
-    sent_at = Column(DateTime, nullable=False)
+
