@@ -19,7 +19,7 @@ def read_users(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100,
-    current_user: models.User = Depends(deps.get_current_active_superuser),
+    current_user: models.UserModel = Depends(deps.get_current_active_superuser),
 ) -> Any:
     """
     Retrieve users.
@@ -33,7 +33,7 @@ def create_user(
     *,
     db: Session = Depends(deps.get_db),
     user_in: schemas.UserCreate,
-    current_user: models.User = Depends(deps.get_current_active_superuser),
+    current_user: models.UserModel = Depends(deps.get_current_active_superuser),
 ) -> Any:
     """
     Create new user.
@@ -59,7 +59,7 @@ def update_user_me(
     password: str = Body(None),
     email: EmailStr = Body(None),
     username: EmailStr = Body(None),
-    current_user: models.User = Depends(deps.get_current_active_user),
+    current_user: models.UserModel = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Update own user.
@@ -79,7 +79,7 @@ def update_user_me(
 @router.get("/me", response_model=schemas.User)
 def read_user_me(
     db: Session = Depends(deps.get_db),
-    current_user: models.User = Depends(deps.get_current_active_user),
+    current_user: models.UserModel = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Get current user.
@@ -117,7 +117,7 @@ def create_user_open(
 @router.get("/{user_id}", response_model=schemas.User)
 def read_user_by_id(
     user_id: int,
-    current_user: models.User = Depends(deps.get_current_active_user),
+    current_user: models.UserModel = Depends(deps.get_current_active_user),
     db: Session = Depends(deps.get_db),
 ) -> Any:
     """
@@ -139,7 +139,7 @@ def update_user(
     db: Session = Depends(deps.get_db),
     user_id: int,
     user_in: schemas.UserUpdate,
-    current_user: models.User = Depends(deps.get_current_active_superuser),
+    current_user: models.UserModel = Depends(deps.get_current_active_superuser),
 ) -> Any:
     """
     Update a user.

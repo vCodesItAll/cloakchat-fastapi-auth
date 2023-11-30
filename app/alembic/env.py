@@ -19,9 +19,9 @@ fileConfig(config.config_file_name)
 # target_metadata = mymodel.Base.metadata
 # target_metadata = None
 
-from app.db.base import Base  # noqa
-from app.models import User
-from app.models.token import Token
+from app.db.base import Base
+from app.models.user_model import UserModel
+# from app.models.token_model import Token
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,

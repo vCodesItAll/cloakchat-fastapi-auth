@@ -1,10 +1,11 @@
 from typing import Any, Dict, Optional, Union
-
+from datetime import datetime
+from sqlalchemy import delete
 from sqlalchemy.orm import Session
 
 from app.controllers.BaseController import BaseController
-from app.models.token import Token
-from app.schemas.user import User
+from app.models.token_model import Token
+from app.schemas.user_schema import User
 
 class TokenController(BaseController[Token, Token, Token]):
     def get_token_by_user_id(self, db: Session, *, obj_in: int) -> Optional[Token]:
@@ -15,7 +16,7 @@ class TokenController(BaseController[Token, Token, Token]):
         stmt = delete(Token).where(Token.user_id.in_(tokens))
         db.execute(stmt)
 
-        return db.query(User).filter(User.id == user_id).first()
+        return db.query(User).filter(User.id == obj_in).first()
 
     def create(self, db: Session, *, obj_in: str) -> Token:
         db_obj = Token(
