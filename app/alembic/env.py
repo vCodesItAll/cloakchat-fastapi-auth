@@ -21,7 +21,8 @@ fileConfig(config.config_file_name)
 
 from app.db.base import Base
 from app.models.user_model import UserModel
-# from app.models.token_model import Token
+from app.models.token_model import Token
+from app.models.message_model import MessageModel
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,

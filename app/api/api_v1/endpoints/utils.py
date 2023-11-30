@@ -33,3 +33,8 @@ def test_email(
     """
     send_test_email(email_to=email_to)
     return {"msg": "Test email sent"}
+
+
+@router.post("/hello")
+def say_hello():
+    return {"msg": "Hello World!"}
