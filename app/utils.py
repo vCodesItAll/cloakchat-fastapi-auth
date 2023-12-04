@@ -2,12 +2,12 @@ import logging
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, Optional
-
 import emails
 from emails.template import JinjaTemplate
 from jose import jwt
-
 from app.core.config import settings
+from fastapi import FastAPI, WebSocket
+from fastapi.responses import HTMLResponse
 
 
 def send_email(
@@ -104,3 +104,4 @@ def verify_password_reset_token(token: str) -> Optional[str]:
         return decoded_token["email"]
     except jwt.JWTError:
         return None
+
