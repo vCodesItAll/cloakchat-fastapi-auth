@@ -49,12 +49,13 @@ def login_access_token(
 
     return {
         "access_token": token.access_token,
-        "token_type": "bearer"
+        "token_type": "bearer",
+        "user_id":str(user.id)
     }
 
 
 @router.post("/login/test-token", response_model=schemas.User)
-def test_token(current_user: models.User = Depends(deps.get_current_user)) -> Any:
+def test_token(current_user: models.UserModel = Depends(deps.get_current_user)) -> Any:
     """
     Test access token
     """

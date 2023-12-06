@@ -4,5 +4,5 @@
 
 -- DROP TABLE "users";
 
--- UPDATE users SET is_superuser = True
--- WHERE users.id = 1;
+UPDATE users SET is_superuser = True
+WHERE users.id = 1;

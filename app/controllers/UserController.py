@@ -1,19 +1,17 @@
 from typing import Any, Dict, Optional, Union
-
 from sqlalchemy.orm import Session
-
 from app.core.security import get_password_hash, verify_password
 from app.controllers.BaseController import BaseController
-from app.models.user import User
-from app.schemas.user import UserCreate, UserUpdate
+from app.models.user_model import UserModel
+from app.schemas.user_schema import UserCreate, UserUpdate
 
 
-class UserController(BaseController[User, UserCreate, UserUpdate]):
-    def get_by_email(self, db: Session, *, email: str) -> Optional[User]:
-        return db.query(User).filter(User.email == email).first()
+class UserController(BaseController[UserModel, UserCreate, UserUpdate]):
+    def get_by_email(self, db: Session, *, email: str) -> Optional[UserModel]:
+        return db.query(UserModel).filter(UserModel.email == email).first()
 
-    def create(self, db: Session, *, obj_in: UserCreate) -> User:
-        db_obj = User(
+    def create(self, db: Session, *, obj_in: UserCreate) -> UserModel:
+        db_obj = UserModel(
             email=obj_in.email,
             hashed_password=get_password_hash(obj_in.password),
             username=obj_in.username,
@@ -25,8 +23,8 @@ class UserController(BaseController[User, UserCreate, UserUpdate]):
         return db_obj
 
     def update(
-        self, db: Session, *, db_obj: User, obj_in: Union[UserUpdate, Dict[str, Any]]
-    ) -> User:
+        self, db: Session, *, db_obj: UserModel, obj_in: Union[UserUpdate, Dict[str, Any]]
+    ) -> UserModel:
         if isinstance(obj_in, dict):
             update_data = obj_in
         else:
@@ -37,7 +35,7 @@ class UserController(BaseController[User, UserCreate, UserUpdate]):
             update_data["hashed_password"] = hashed_password
         return super().update(db, db_obj=db_obj, obj_in=update_data)
 
-    def authenticate(self, db: Session, *, email: str, password: str) -> Optional[User]:
+    def authenticate(self, db: Session, *, email: str, password: str) -> Optional[UserModel]:
         user = self.get_by_email(db, email=email)
         if not user:
             return None
@@ -45,11 +43,11 @@ class UserController(BaseController[User, UserCreate, UserUpdate]):
             return None
         return user
 
-    def is_active(self, user: User) -> bool:
+    def is_active(self, user: UserModel) -> bool:
         return user.is_active
 
-    def is_superuser(self, user: User) -> bool:
+    def is_superuser(self, user: UserModel) -> bool:
         return user.is_superuser
 
 
-user = UserController(User)
+user = UserController(UserModel)
