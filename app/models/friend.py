@@ -1,12 +1,14 @@
 from pydantic import BaseModel
 from sqlalchemy import Column, ForeignKey, Integer, PrimaryKeyConstraint
 from sqlalchemy.orm import relationship
+from app.db.base_class import Base
 
 from app.schemas.friend import FriendInDBBase
 
-class Friends(BaseModel):
+class Friends(Base):
     __tablename__ = "friends"
 
+    id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     friend_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
