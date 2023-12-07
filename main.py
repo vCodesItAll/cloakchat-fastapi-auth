@@ -24,3 +24,4 @@ async def root():
     return {"message":"Hello World"}
     
 app.include_router(api_router, prefix=settings.API_V1_STR)
+# app.include_router(friends.router, prefix="/api/friends", tags=["friends"])
