@@ -2,8 +2,8 @@ from typing import Any, Dict, Optional, Union
 from sqlalchemy.orm import Session
 from app.core.security import get_password_hash, verify_password
 from app.controllers.BaseController import BaseController
-from app.models.Friend import Friend
-from app.schemas.Friend import FriendCreate, FriendUpdate
+from app.models.friend import Friend
+from app.schemas.friend import FriendCreate, FriendUpdate
 
 
 class FriendController(BaseController[Friend, FriendCreate, FriendUpdate]):

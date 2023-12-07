@@ -8,8 +8,9 @@ from sqlalchemy.orm import Session
 from app import controllers, models, schemas
 from app.api import deps
 from app.core.config import settings
+from app.models.token import Token
 from app.utils import send_new_account_email
-from datetime import timedelta
+from datetime import datetime, timedelta
 from app.core import security
 
 router = APIRouter()
@@ -109,7 +110,7 @@ def create_user_open(
             status_code=400,
             detail="The user with this username already exists in the system",
         )
-    user_in = schemas.UserCreate(password=password, email=email, username=username)
+    user_in = schemas.UserCreate(password=password, email=email, username=userame)
     new_user = controllers.user.create(db, obj_in=user_in)
     return new_user
 
