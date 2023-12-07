@@ -17,5 +17,10 @@
             "database": "postgres",
             "username": "postgres"
         }
-    ]
+    ],
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#4E0D5A",
+        "titleBar.activeBackground": "#6E127D",
+        "titleBar.activeForeground": "#FEFCFF"
+    }
 }
