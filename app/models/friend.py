@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from sqlalchemy import Column, ForeignKey, Integer, PrimaryKeyConstraint
+from sqlalchemy import Column, ForeignKey, Integer, PrimaryKeyConstraint, String
 from sqlalchemy.orm import relationship
 from app.db.base_class import Base
 
@@ -8,9 +8,10 @@ from app.schemas.friend import FriendInDBBase
 class Friends(Base):
     __tablename__ = "friends"
 
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    friend_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    id = Column(Integer, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    friend_id = Column(Integer, ForeignKey("users.id"))
+    email = Column(String, nullable=False)
 
     user = relationship("User", foreign_keys=[user_id])
     friend = relationship("User", foreign_keys=[friend_id])
@@ -27,3 +28,5 @@ def to_schema(self):
             hashed_password=self.hashed_password,
 
         )
+
+

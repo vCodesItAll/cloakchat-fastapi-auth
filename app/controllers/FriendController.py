@@ -50,3 +50,4 @@ class FriendController(BaseController[Friends, FriendCreate, FriendUpdate]):
         return friend.is_superFriend
 
 friend_controller = FriendController(Friend)
+
