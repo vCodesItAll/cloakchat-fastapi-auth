@@ -17,17 +17,17 @@ def get_friend_by_id(friend_id: int):
 def get_current_friend():
     return None
 
-@router.post("/add-friend/{friend_id}")
-def add_friend(*, db: Session = Depends(deps.get_db), friend_id: Annotated[int, Form()], current_user: models.User = Depends(get_current_user(db, token))):
-    friend = get_friend_by_id(friend_id)
-    if friend:
-        # Add a friendship entry for the current user and the friend
-        db_friendship = Friends(user_id=current_user.id, friend_id=friend.id)
-        db.add(db_friendship)
-        db.commit()
-        return {"message": "Friend added successfully"}
-    else:
-        raise HTTPException(status_code=404, detail="Friend not found")
+# @router.post("/add-friend/{friend_id}")
+# def add_friend(*, db: Session = Depends(deps.get_db), friend_id: Annotated[int, Form()], current_user: models.User = Depends(get_current_user(db, token))):
+#     friend = get_friend_by_id(friend_id)
+#     if friend:
+#         # Add a friendship entry for the current user and the friend
+#         db_friendship = Friends(user_id=current_user.id, friend_id=friend.id)
+#         db.add(db_friendship)
+#         db.commit()
+#         return {"message": "Friend added successfully"}
+#     else:
+#         raise HTTPException(status_code=404, detail="Friend not found")
     
     # def get_child_by_unique_code(self, db: Session, unique_child_code: str) -> Optional[Child]:
     #     return db.query(self.model).filter(self.model.unique_child_code == unique_child_code).first
