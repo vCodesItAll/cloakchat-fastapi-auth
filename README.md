@@ -1,9 +1,36 @@
+# Angel Pets
 
+## Purpose
+Angel Pets is a revolutionary application designed to discreetly aid individuals in distress, especially those facing domestic violence situations. It provides a safe communication channel, embedded within a seemingly innocent AI-driven digital pet platform.
 
-## Setup
-- After creating your own repo from the template, create a local copy either with the Github CLI tool (recommended) or a git clone.
-- Make sure you have Docker Desktop downloaded and running
-- Open VScode and install the [Dev Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-- Open your repo in VScode, after a few moments you should see a prompt from VScode asking if you want to reopen the repo in a dev container, follow the prompt to do so. If you are not prompted, you can click the remote connection icon in the bottom left corner and select 'Reopen in Container'
-- Once the container is built, click the SQL tools extension to establish your database connection. All required fields, including password, are 'postgres'.
-- Proceed to set up your file structure per Project document.
+## Major Functions
+- Create a digital pet using AI technology.
+- Engage in interactive conversations with the AI pet.
+- Utilize hidden communication to seek help discreetly.
+
+## Dependencies
+- Next.js
+- SQL Alchemy
+- Alembic
+- PostgreSQL
+
+## Build/Deploy Instructions
+1. Clone the repository.
+2. Install dependencies using `npm install` or `yarn install`.
+3. Configure your PostgreSQL database.
+4. Run database migrations using Alembic.
+5. Start the application with `npm start` or `yarn start`.
+6. Access the application via the provided URL.
+
+## Usage
+- Users can create their AI-driven digital pets.
+- Engage in conversations, allowing discreet communication with designated contacts.
+
+## Contributions
+Contributions are welcome! Feel free to fork the project, make changes, and submit pull requests.
+
+## License
+This project is licensed under [License Name]. See the LICENSE file for details.
+
+## Support
+For any queries or support, please contact [Your Contact Information].
