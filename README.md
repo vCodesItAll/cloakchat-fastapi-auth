@@ -30,7 +30,7 @@ Angel Pets is a revolutionary application designed to discreetly aid individuals
 Contributions are welcome! Feel free to fork the project, make changes, and submit pull requests.
 
 ## License
-This project is licensed under [License Name]. See the LICENSE file for details.
+This project is not currently licensed.
 
 ## Support
-For any queries or support, please contact [Your Contact Information].
+For any queries or support, please contact me on discord @vcodesitall.
