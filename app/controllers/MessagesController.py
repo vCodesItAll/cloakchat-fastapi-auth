@@ -3,19 +3,19 @@ from sqlalchemy.orm import Session
 from app.core.security import get_password_hash, verify_password
 from app.controllers.BaseController import BaseController
 from app.models import MessageModel
-from app.schemas import MessageCreate, MessageInDBBase
+from app.schemas.message_schema import MessageCreate, MessageInDBBase
 from datetime import datetime
 
 class MessagesController(BaseController[MessageModel, MessageCreate, MessageInDBBase]):
     def get_messages(self, db: Session) -> Optional[MessageModel]:
         return db.query(MessageModel).all()
 
-    def create(self, db: Session, *, obj_in: MessageCreate) -> MessageModel:
+    def create(self, db: Session, obj_in: MessageCreate) -> MessageModel:
         db_obj = MessageModel(
             sender_id=obj_in.sender_id,
             receiver_id=obj_in.receiver_id,
             message_content=obj_in.message_content,
-            sent_at=datetime.now  
+            sent_at=datetime.utcnow()  
             # find out the correct import for datetime and you should be set    
         )
         db.add(db_obj)
